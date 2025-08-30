@@ -68,4 +68,4 @@ export default tseslint.config([
   },
 ])
 ```
->>>>>>> 072cbb1 (Init: 프로젝트 초기 설정)
+
