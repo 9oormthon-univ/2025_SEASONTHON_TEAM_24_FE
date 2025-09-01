@@ -1,8 +1,11 @@
 import React from 'react'
+import HomeGoal from '../../shared/components/goal/homeGoal'
 
 function Home() {
   return (
-    <div>안녕하세요 홈 대시보드입니다.</div>
+    <div>
+      <HomeGoal />
+    </div>
   )
 }
 
