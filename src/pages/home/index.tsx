@@ -1,4 +1,3 @@
-import React from 'react'
 import HomeGoal from '../../shared/components/goal/homeGoal'
 
 function Home() {
