@@ -1,5 +1,3 @@
-import React from 'react'
-
 function homeGoal() {
   /**
    * 금액 포맷 함수 formatAmount
