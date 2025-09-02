@@ -5,6 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      center: false,
+      padding: '1rem', // 16px 양쪽 여백
+      screens: {
+        DEFAULT: '480px',
+      },
+    },
     extend: {
       colors: {
         primary: {
@@ -101,7 +108,10 @@ export default {
 			  16: '1rem',     // 16px 
 			  20: '1.25rem',  // 20px 
 			  24: '1.5rem',   // 24px 
-			}
+			},
+      minWidth: {
+        'mobile-min': '320px',
+      }
     },
   },
   plugins: [],
