@@ -1,22 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BottomNav from './shared/components/common/BottomNav';
-import Home from './pages/home';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import BottomNav from "./shared/components/common/BottomNav";
+import AppLayout from "./shared/components/layout/AppLayout";
+import Login from "./pages/login";
+
+function AppContent() {
+  const location = useLocation();
+  const hideBottomNav = location.pathname === "/login";
+
+  return (
+    <AppLayout>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<div>홈</div>} />
+        {/* 다른 페이지들도 여기 추가 */}
+      </Routes>
+
+      {!hideBottomNav && <BottomNav />}
+    </AppLayout>
+  );
+}
 
 function App() {
   return (
-    <div className="flex justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-[480px] min-w-[320px] bg-white relative px-6">
-        <Router>
-          <div className="App">
-            <Routes>
-              <Route path="/" element={<Home />} />
-            </Routes>
-            <BottomNav />
-          </div>
-        </Router>
-      </div>
-    </div>
-  )
+    <Router>
+      <AppContent />
+    </Router>
+  );
 }
-export default App
+
+export default App;
