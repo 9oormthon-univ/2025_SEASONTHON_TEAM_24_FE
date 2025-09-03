@@ -1,4 +1,3 @@
-import React from 'react'
 import { Plus } from "lucide-react"
 
 // 전략 컴포넌트 
@@ -10,20 +9,24 @@ function homeStrategy(){
   }
   return (
     <div className='mt-10 -mx-6'>
-      <div className='bg-primary-100 flex items-center rounded-t-12 h-[48px] px-5'>
-        <h3 className="font-semibold text-gray-900 text-20">
-          현재 진행 중인 전략
+      <div className='flex items-center px-5 py-8 bg-primary-100'>
+        <h3 className="font-semibold text-gray-900 text-14">
+          현재 진행 중인 전략(0/3)
         </h3>
       </div>
-      <section className='px-6 py-3 bg-white'>
-        <div className='h-[97px] mb-8 flex items-center bg-white rounded-8 border-gray-200'>
-          <p className='px-5 text-left text-gray-600'>
-            진행 중인 전략이 없어요<br/>
-            이번 달도 텅장...
-          </p>
+      <section className='px-6 py-6 bg-white'>
+        <div className='flex items-center justify-center px-16 py-12 mb-8 border border-gray-200 rounded-8'>
+          <div className='flex-shrink-0 w-[64px] h-[64px] mr-4 bg-orange-400 rounded-8'></div>
+          <div className='flex-1 ml-2'>
+            <h4 className='mb-1 font-bold text-left text-gray-900 text-16'>
+              진행 중인 도전이 없어요
+            </h4>
+            <p className='text-gray-500 text-14'>이러다 또 텅장...</p>
+          </div>
         </div>
-        <button onClick={navigateToStrategyList} className='flex items-center justify-center w-full py-3 bg-gray-200 rounded-12'>
-          <Plus className="w-24 h-24 text-gray-700" />
+        <button onClick={navigateToStrategyList} className='flex items-center justify-center w-full py-3 bg-primary-500 rounded-8'>
+          <span className='text-white text-12'>도전 추가하기</span>
+          <Plus className="w-12 h-12 text-white" />
         </button>
       </section>
     </div>
