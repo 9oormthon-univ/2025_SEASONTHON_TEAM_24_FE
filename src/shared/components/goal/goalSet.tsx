@@ -38,7 +38,7 @@ function GoalSet(){
       <div>
         <button 
           onClick={handleNext}
-          className="w-full py-3 font-medium text-white transition-colors bg-orange-500 mt-[74px] text-12 rounded-8"
+          className="w-full py-3 font-medium text-white transition-colors bg-primary-500 mt-[74px] text-12 rounded-8"
         >다음</button>
       </div>
     </div>

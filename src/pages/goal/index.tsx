@@ -1,9 +1,11 @@
-import GoalSet from "../../shared/components/goal/goalSet"
+// import GoalSet from "../../shared/components/goal/goalSet"
+import SavingGoalPage from '../../shared/components/goal/SavingGoalPage';
 
 function goalSetting (){
   return (
     <div>
-      <GoalSet />
+      {/* <GoalSet /> */}
+      <SavingGoalPage />
     </div>
   )
 }
