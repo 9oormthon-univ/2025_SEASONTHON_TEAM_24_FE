@@ -40,7 +40,7 @@ function BottomNav() {
   }
 
   return (
-    <nav className="absolute bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200">
       <div className="max-w-md px-24 py-3 mx-auto">
         <div className="flex items-center justify-around py-2">
           {navItems.map((item) => {
