@@ -32,7 +32,7 @@ function SavingGoalPage(){
         <button 
           onClick={handleFindGoal}
           className="w-full py-3 font-medium text-white transition-colors bg-primary-500 text-12 rounded-8"
-        >다음</button>
+        >나의 꺼비 찾기</button>
       </div>
     </div>
   )
