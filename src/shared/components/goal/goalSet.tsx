@@ -1,17 +1,25 @@
-import {useState} from "react";
+import {useState, ChangeEvent} from "react";
 
-const InputField = ({title, desc, value, onChange, hasBorder = false}) => {
+interface InputFieldProps {
+  title: string, 
+  desc: string, 
+  value: string, 
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  hasBorder?: boolean;
+}
+
+const InputField = ({title, desc, value, onChange, hasBorder = false}: InputFieldProps) => {
   return (
     <div className='mb-28'>
       <h2 className='mb-1 font-bold text-16'>{title}</h2>
-      <p className='font-medium text-gray-500 text-12'>{desc}</p>
-      <div className='flex'>
+      <p className='mb-1 font-medium text-gray-500 text-12'>{desc}</p>
+      <div className='flex items-end'>
         <input 
           type="text"
           value={value}
           onChange={onChange}
-          className={`flex-1 px-4 py-3 bg-gray-100 rounded-4 text-base focus:outline-none focus:border-primary-300 ${
-            hasBorder ? 'border-4 border-primary-500' : 'border border-gray-300'
+          className={`w-[138px] px-2 py-3 bg-gray-100 rounded-4 text-16 font-bold focus:outline-none focus:border-primary-300 ${
+            hasBorder ? 'border-2 border-primary-500' : 'border border-gray-300'
           } `}
           placeholder='금액 입력'
         />
@@ -47,8 +55,14 @@ function goalSet(){
         title="올해 저금 목표"
         desc="목표 금액은 최대 2000만원까지 설정할 수 있어요"
         value={savingGoal}
-        onChange={(e) => setMonthlyIncome(e.target.value)}
+        onChange={(e) => setSavingGoal(e.target.value)}
       />
+      <div>
+        <button 
+          onClick={handleNext}
+          className="w-full py-3 font-medium text-white transition-colors bg-orange-500 mt-[116px] text-12 rounded-8"
+        >다음</button>
+      </div>
     </div>
   )
 }
