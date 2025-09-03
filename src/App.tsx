@@ -6,7 +6,7 @@ import Survey from "./pages/survey/SurveyPage"
 
 function AppContent() {
   const location = useLocation();
-  const hideBottomNav = location.pathname === '/goalSetup';
+  const hideBottomNav = location.pathname === '/goalSetup' || location.pathname === '/survey' || location.pathname.startsWith('/survey/')
 
   return (
     <div className="App">
