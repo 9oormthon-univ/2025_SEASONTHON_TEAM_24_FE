@@ -40,8 +40,8 @@ function BottomNav() {
   }
 
   return (
-    <nav className="absolute bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200">
-      <div className="max-w-md px-4 mx-auto">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200">
+      <div className="max-w-md px-24 py-3 mx-auto">
         <div className="flex items-center justify-around py-2">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -49,17 +49,17 @@ function BottomNav() {
               <button
                 key={item.path}
                 onClick={() => handleNavClick(item.path)}
-                className={`flex flex-col items-center py-2 px-3 rounded-lg transition-colors ${
+                className={`flex flex-col items-center px-3 rounded-lg transition-colors ${
                   isActive 
                     ? 'text-gray-700' 
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                <div className={`mb-1 ${isActive ? 'text-gray-700' : 'text-gray-500'}`}>
+                <div className={`mb-1 ${isActive ? 'text-gray-900' : 'text-gray-400'}`}>
                   {item.icon}
                 </div>
-                <span className={`text-xs font-medium ${
-                  isActive ? 'text-gray-700' : 'text-gray-500'
+                <span className={`text-10 font-medium ${
+                  isActive ? 'text-gray-900' : 'text-gray-400'
                 }`}>
                   {item.label}
                 </span>

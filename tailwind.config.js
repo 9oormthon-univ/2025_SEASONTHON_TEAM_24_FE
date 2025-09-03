@@ -7,7 +7,10 @@ export default {
   theme: {
     container: {
       center: false,
-      padding: '1rem', // 16px 양쪽 여백
+      padding: {
+        DEFAULT: '1rem', // 16px 양쪽 여백
+        bottom: '6rem',
+      },
       screens: {
         DEFAULT: '480px',
       },
@@ -114,5 +117,7 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/container-queries')
+  ],
 }
