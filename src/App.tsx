@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BottomNav from './shared/components/common/BottomNav';
 import Home from './pages/home';
+import GoalSetting from './pages/goal';
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/goalSetup" element={<GoalSetting />} />
+
             </Routes>
             <BottomNav />
           </div>
