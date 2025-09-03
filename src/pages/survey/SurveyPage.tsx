@@ -2,6 +2,19 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import {MOCK_SURVEY_QUESTIONS } from '../../data/mockSurveyData';
 
+import survey1 from '../../shared/assets/survey-svg/survey1.svg';
+import survey2 from '../../shared/assets/survey-svg/survey2.svg';
+import survey3 from '../../shared/assets/survey-svg/survey3.svg';
+import survey4 from '../../shared/assets/survey-svg/survey4.svg';
+import survey5 from '../../shared/assets/survey-svg/survey5.svg';
+import survey6 from '../../shared/assets/survey-svg/survey6.svg';
+import survey7 from '../../shared/assets/survey-svg/survey7.svg';
+import survey8 from '../../shared/assets/survey-svg/survey8.svg';
+import survey9 from '../../shared/assets/survey-svg/survey9.svg';
+import survey10 from '../../shared/assets/survey-svg/survey10.svg';
+import defaultImg from '../../shared/assets/svg/mainCharacter1.svg';
+
+
 interface SurveyOption {
   type: string;
   title: string;
@@ -17,6 +30,20 @@ interface SurveyAnswer {
   surveyId: number;
   optionType: string;
 }
+
+// 이미지 매핑 객체
+const questionImages: { [key: number]: string } = {
+  1: survey1,
+  2: survey2,
+  3: survey3,
+  4: survey4,
+  5: survey5,
+  6: survey6,
+  7: survey7,
+  8: survey8,
+  9: survey9,
+  10: survey10,
+};
 
 function SurveyPage(){
   const navigate = useNavigate();
@@ -45,8 +72,8 @@ function SurveyPage(){
     return (
       <div className='flex items-center justify-center'>
         <div className='text-center'>
-          <div className='w-12 h-12 mx-auto mb-4 border-b-2 border-blue-600 rounded-full animate-spin'>
-            <p className='text-primary-500'>질문을 불러오는 중...</p>
+          <div>
+            <p className='text-primary-400'>질문을 불러오는 중...</p>
           </div>
         </div>
       </div>
@@ -76,6 +103,10 @@ function SurveyPage(){
     }
   }
 
+  // 질문 이미지 가져오기
+  function getQuestionImg(surveyId: number): string {
+    return questionImages[surveyId] || defaultImg;
+  }
     // 서베이 완료 처리
   function handleSurveyComplete(finalAnswers: SurveyAnswer[]) {
     console.log('서베이 완료!');
@@ -103,6 +134,13 @@ function SurveyPage(){
           <h1 className="font-semibold leading-relaxed text-gray-800 text-24">
             {currentQuestion.title}
           </h1>
+        </div>
+        <div className="flex justify-center mb-6">
+          <img 
+            src={getQuestionImg(currentQuestion.surveyId)} 
+            alt={`질문 ${currentQuestion.surveyId}`}
+            className="object-cover w-[200px]"
+          />
         </div>
 
         {/* 선택지 버튼들 */}
