@@ -1,5 +1,6 @@
 import {useState} from "react";
 import InputField from './InputField';
+import MainCharacter from "../../assets/svg/mainCharacter1.svg"
 
 function GoalSet(){
   const [monthlyIncome, setMonthlyIncome ] = useState("");
@@ -13,6 +14,11 @@ function GoalSet(){
   return (
     <div className='min-h-screen bg-white'>
       <div className='py-28'>
+        <img 
+          src={MainCharacter}
+          alt="꺼비"
+          className='w-[70px] mb-1'
+        />
         <h1 className='font-semibold text-gray-900 text-18'>
           당신의 금융 생활에 대해 알고 싶어요!
         </h1>
