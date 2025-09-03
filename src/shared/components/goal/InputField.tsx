@@ -18,7 +18,7 @@ const InputField = ({title, desc, value, onChange, hasBorder = false}: InputFiel
           type="text"
           value={value}
           onChange={onChange}
-          className={`w-[138px] px-2 py-3 bg-gray-100 rounded-4 text-16 font-bold focus:outline-none focus:border-primary-300 ${
+          className={`w-[138px] h-[38px] px-2 py-3 bg-gray-100 rounded-4 text-16 font-bold focus:outline-none focus:border-primary-300 ${
             hasBorder ? 'border-2 border-primary-500' : 'border border-gray-300'
           } `}
           placeholder='금액 입력'
