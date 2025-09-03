@@ -15,8 +15,8 @@ function homeStrategy(){
           현재 진행 중인 전략
         </h3>
       </div>
-      <section className='px-6 py-3 bg-gray-100'>
-        <div className='h-[97px] mb-8 flex items-center bg-white rounded-12'>
+      <section className='px-6 py-3 bg-white'>
+        <div className='h-[97px] mb-8 flex items-center bg-white rounded-8 border-gray-200'>
           <p className='px-5 text-left text-gray-600'>
             진행 중인 전략이 없어요<br/>
             이번 달도 텅장...
