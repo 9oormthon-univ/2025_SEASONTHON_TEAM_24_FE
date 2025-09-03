@@ -1,4 +1,15 @@
-import { type SurveyQuestion } from '../shared/services/surveyApi'
+// import { type SurveyQuestion } from '../shared/services/surveyApi'
+
+export interface SurveyOption {
+  type: string;
+  title: string;
+}
+
+export interface SurveyQuestion {
+  surveyId: number;
+  title: string;
+  options: SurveyOption[];
+}
 
 export const MOCK_SURVEY_QUESTIONS: SurveyQuestion[] = [
   {

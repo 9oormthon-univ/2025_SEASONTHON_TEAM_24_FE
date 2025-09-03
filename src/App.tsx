@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import BottomNav from './shared/components/common/BottomNav';
 import Home from './pages/home';
 import GoalSetting from './pages/goal';
-import Survey from "./pages/survey"
+import Survey from "./pages/survey/SurveyPage"
 
 function AppContent() {
   const location = useLocation();
