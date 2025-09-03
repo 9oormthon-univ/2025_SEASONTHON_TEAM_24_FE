@@ -8,15 +8,15 @@ function homeStrategy(){
     // navigateToStrategyList('/strategies');
   }
   return (
-    <div className='mt-10 -mx-6'>
+    <div className='mt-10 -mx-[16px]'>
       <div className='flex items-center px-5 py-8 bg-primary-100'>
         <h3 className="font-semibold text-gray-900 text-14">
           현재 진행 중인 전략(0/3)
         </h3>
       </div>
-      <section className='px-6 py-6 bg-white'>
+      <section className='px-5 py-5 bg-white'>
         <div className='flex items-center justify-center px-16 py-12 mb-8 border border-gray-200 rounded-8'>
-          <div className='flex-shrink-0 w-[64px] h-[64px] mr-4 bg-orange-400 rounded-8'></div>
+          <div className='flex-shrink-0 w-[64px] h-[67px] mr-4 bg-orange-400 rounded-8'></div>
           <div className='flex-1 ml-2'>
             <h4 className='mb-1 font-bold text-left text-gray-900 text-16'>
               진행 중인 도전이 없어요
