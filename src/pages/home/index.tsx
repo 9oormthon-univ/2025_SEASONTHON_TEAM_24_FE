@@ -1,12 +1,11 @@
-import React from 'react'
-import HomeGoal from '../../shared/components/goal/homeGoal'
+import HomeGoal from "../../shared/components/goal/homeGoal";
 
 function Home() {
   return (
     <div>
       <HomeGoal />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
