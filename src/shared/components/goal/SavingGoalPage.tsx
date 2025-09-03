@@ -6,7 +6,7 @@ function SavingGoalPage(){
   }
   return (
     <div className='mt-[38px]'>
-      <div className='px-16 py-3 bg-white border-2 border-primary-500 rounded-8'>
+      <div className='px-16 py-3 bg-white border border-primary-500 rounded-8 shadow-primary'>
         <p className="font-bold leading-relaxed text-gray-900 text-16">
           <span className="font-bold">1,000만원 모으기까지...</span><br/>
           현재 구조상 <span className="font-bold text-primary-600">n일</span> 걸려요
