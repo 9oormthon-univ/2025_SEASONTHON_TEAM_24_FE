@@ -47,6 +47,9 @@ export default {
         'bg-white': '#F7F9FF',
         'bg-black': '#232323',
       },
+      boxShadow: {
+        'primary': '0 2px 8px 0 rgba(255, 85, 0, 0.12)',
+      },
       fontSize: {
 	      //px 크기에 맞춤
         8: '0.5rem',  
