@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import onboardingSvg1 from "../../shared/assets/onboarding-svg/onboarding1.svg";
 import onboardingSvg2 from "../../shared/assets/onboarding-svg/onboarding2.svg";
 import onboardingSvg3 from "../../shared/assets/onboarding-svg/onboarding3.svg";
