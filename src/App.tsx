@@ -4,6 +4,7 @@ import Home from './pages/home';
 import GoalSetting from './pages/goal';
 import Survey from "./pages/survey/SurveyPage"
 import SurveyResult from './pages/survey/SurveyResult'
+import StrategyListPage from './pages/strategy/StrategyListPage'
 
 function AppContent() {
   const location = useLocation();
@@ -16,6 +17,8 @@ function AppContent() {
         <Route path="/goalSetup" element={<GoalSetting />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/survey/result" element={<SurveyResult />} />
+        <Route path="/strategyList" element={<StrategyListPage />} />
+
       </Routes>
       {!hideBottomNav && <BottomNav />}
     </div>
