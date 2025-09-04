@@ -2,16 +2,20 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import BottomNav from './shared/components/common/BottomNav';
 import Home from './pages/home';
 import GoalSetting from './pages/goal';
+import Survey from "./pages/survey/SurveyPage"
+import SurveyResult from './pages/survey/SurveyResult'
 
 function AppContent() {
   const location = useLocation();
-  const hideBottomNav = location.pathname === '/goalSetup';
+  const hideBottomNav = location.pathname === '/goalSetup' || location.pathname === '/survey' || location.pathname.startsWith('/survey/')
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/goalSetup" element={<GoalSetting />} />
+        <Route path="/survey" element={<Survey />} />
+        <Route path="/survey/result" element={<SurveyResult />} />
       </Routes>
       {!hideBottomNav && <BottomNav />}
     </div>
