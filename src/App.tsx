@@ -3,14 +3,29 @@ import {
   Routes,
   Route,
   useLocation,
+  useSearchParams,
 } from "react-router-dom";
 import BottomNav from "./shared/components/common/BottomNav";
 import AppLayout from "./shared/components/layout/AppLayout";
 import Login from "./pages/login";
+import { useEffect } from "react";
 
 function AppContent() {
   const location = useLocation();
   const hideBottomNav = location.pathname === "/login";
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const status = searchParams.get("status");
+    const refreshToken = searchParams.get("refreshToken");
+
+    if (status === "login" && refreshToken) {
+      localStorage.setItem("refreshToken", refreshToken);
+
+      window.history.replaceState({}, document.title, "/");
+    }
+  }, [searchParams]);
 
   return (
     <AppLayout>
