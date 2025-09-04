@@ -1,6 +1,6 @@
-import HomeGoal from '../../shared/components/goal/homeGoal'
-import HomeStrategy from '../../shared/components/strategy/homeStrategy'
-import WeeklyRecord from '../../shared/components/goal/weeklyRecord'
+import HomeGoal from "../../shared/components/goal/homeGoal";
+import HomeStrategy from "../../shared/components/strategy/homeStrategy";
+import WeeklyRecord from "../../shared/components/goal/weeklyRecord";
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
       <HomeStrategy />
       <WeeklyRecord />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

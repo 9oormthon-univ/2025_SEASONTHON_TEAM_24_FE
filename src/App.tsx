@@ -1,24 +1,47 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import BottomNav from './shared/components/common/BottomNav';
-import Home from './pages/home';
-import GoalSetting from './pages/goal';
-import Survey from "./pages/survey/SurveyPage"
-import SurveyResult from './pages/survey/SurveyResult'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
+import BottomNav from "./shared/components/common/BottomNav";
+import AppLayout from "./shared/components/layout/AppLayout";
+import { useEffect } from "react";
+import Home from "./pages/home";
 
 function AppContent() {
   const location = useLocation();
-  const hideBottomNav = location.pathname === '/goalSetup' || location.pathname === '/survey' || location.pathname.startsWith('/survey/')
+  const hideBottomNav =
+    location.pathname === "/goalSetup" ||
+    location.pathname === "/survey" ||
+    location.pathname.startsWith("/survey/") ||
+    location.pathname === "/login";
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const status = searchParams.get("status");
+    const refreshToken = searchParams.get("refreshToken");
+
+    if (status === "login" && refreshToken) {
+      localStorage.setItem("refreshToken", refreshToken);
+
+      window.history.replaceState({}, document.title, "/");
+    }
+  }, [searchParams]);
 
   return (
-    <div className="App">
+    <AppLayout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/goalSetup" element={<GoalSetting />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/survey/result" element={<SurveyResult />} />
       </Routes>
+
       {!hideBottomNav && <BottomNav />}
-    </div>
+    </AppLayout>
   );
 }
 
@@ -31,6 +54,7 @@ function App() {
         </Router>
       </div>
     </div>
-  )
+  );
 }
-export default App
+
+export default App;
