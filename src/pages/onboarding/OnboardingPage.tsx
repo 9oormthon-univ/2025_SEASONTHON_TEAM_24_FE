@@ -11,14 +11,14 @@ const OnboardingStep1 = ({ onNext }) => {
       {/* 컨테이너 */}
       <div className="container flex flex-col items-center justify-center flex-1">
         {/* 온보딩 이미지 */}
-        <div className="flex items-left justify-left w-150 h-100 -ml-[74px]">
+        <div className="flex items-left justify-left w-150 h-100 -ml-[120px]">
           <img src={onboardingSvg1} alt="텅장메이트 온보딩 1" className="object-contain w-full h-full" />
         </div>
 
         {/* 텍스트 */}
-        <div className="text-left mb-30">
-          <h1 className="font-semibold text-primary-500 text-24">이 앱에 들어온 당신 ,</h1>
-          <span className="font-semibold text-gray-600 text-24">지금처럼 살면 돈 못모아요.</span>
+        <div className="text-left mb-30 -ml-[60px]">
+          <h1 className="font-semibold text-primary-500 text-26">이 앱에 들어온 당신 ,</h1>
+          <span className="font-semibold text-gray-800 text-26">지금처럼 살면 돈 못모아요.</span>
         </div>
 
         {/* 페이지 인디케이터 */}
@@ -47,12 +47,12 @@ const OnboardingStep2 = ({ onNext }) => {
       <div className="container flex flex-col items-center justify-center flex-1 px-16 mx-auto py-60">
         {/* 온보딩 이미지 */}
         {/* 텍스트 */}
-        <div className="text-left mb-30">
-          <h1 className="font-semibold text-gray-600 text-24">
+        <div className="text-left mb-30 -ml-[60px]">
+          <h1 className="font-semibold text-gray-800 text-26">
             내통장은 왜 늘 <span className="text-primary-500">텅장</span>일까요?
             <br />
           </h1>
-          <span className="font-semibold text-navy-100 text-24">그 답은 소비습관에 있어요.</span>
+          <span className="font-semibold text-navy-100 text-26">그 답은 소비습관에 있어요.</span>
         </div>
         <div className="flex items-center justify-center">
           <img src={onboardingSvg2} alt="텅장메이트 온보딩 2" className="object-contain w-full h-full" />
@@ -83,8 +83,8 @@ const OnboardingStep3 = ({ onComplete }) => {
     <div className="flex flex-col min-h-screen bg-gray-200 -mb-[100px] -mx-[16px]">
       <div className="container flex flex-col items-center justify-center flex-1 px-16 mx-auto py-60">
         {/* 텍스트 */}
-        <div className="text-left mb-30">
-          <h1 className="mb-12 font-semibold text-gray-900 text-24">
+        <div className="text-left mb-30m -ml-[60px]">
+          <h1 className="mb-12 font-semibold text-gray-800 text-26">
             이제 소비 메이트, 꺼비가
             <br />
             <span className='text-navy-100'>소비 구멍</span>을 막아드릴게요.
