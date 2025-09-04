@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import onboardingSvg1 from "../../shared/assets/onboarding-svg/onboarding1.svg";
 import onboardingSvg2 from "../../shared/assets/onboarding-svg/onboarding2.svg";
 import onboardingSvg3 from "../../shared/assets/onboarding-svg/onboarding3.svg";
@@ -116,6 +117,7 @@ const OnboardingStep3 = ({ onComplete }) => {
 // 온보딩 플로우 관리 컴포넌트
 const OnboardingFlow = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     if (currentStep < 3) {
@@ -125,8 +127,7 @@ const OnboardingFlow = () => {
 
   const handleComplete = () => {
     // 온보딩 완료 후 목표 설정 페이지로 이동
-    console.log("온보딩 완료! 목표 설정으로 이동");
-    // 실제 구현시에는 navigate('/goal-setting') 사용
+    navigate('/login');
   };
 
   const renderCurrentStep = () => {
