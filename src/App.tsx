@@ -6,6 +6,7 @@ import Survey from "./pages/survey/SurveyPage"
 import SurveyResult from './pages/survey/SurveyResult'
 import StrategyListPage from './pages/strategy/StrategyListPage'
 import AppLayout from "./shared/components/layout/AppLayout";
+import Login from "./pages/login/index"
 import { useEffect } from "react";
 
 function AppContent() {
@@ -37,6 +38,7 @@ function AppContent() {
         <Route path="/survey" element={<Survey />} />
         <Route path="/survey/result" element={<SurveyResult />} />
         <Route path="/strategyList" element={<StrategyListPage />} />
+        <Route path="/login" element={<Login />} /> 
 
       </Routes>
 
