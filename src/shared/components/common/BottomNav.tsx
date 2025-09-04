@@ -19,7 +19,7 @@ function BottomNav() {
       label: '홈',
     },
     {
-      path: '/strategy',
+      path: '/strategyList',
       icon: <Lightbulb size={24} />,
       label: '전략리스트',
     },

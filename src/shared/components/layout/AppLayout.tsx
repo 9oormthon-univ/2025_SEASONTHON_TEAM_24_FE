@@ -7,7 +7,7 @@ type Props = {
 function AppLayout({ children }: Props) {
   return (
     <div className="flex justify-center min-h-screen bg-gray-100">
-      <div className="app-container bg-white relative px-6">{children}</div>
+      <div className="relative bg-white app-container">{children}</div>
     </div>
   );
 }
