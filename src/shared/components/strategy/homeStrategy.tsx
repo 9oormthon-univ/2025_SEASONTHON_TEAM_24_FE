@@ -1,0 +1,36 @@
+import { Plus } from "lucide-react"
+
+// 전략 컴포넌트 
+function homeStrategy(){
+  function navigateToStrategyList() {
+    console.log("전략 리스트 페이지로 이동");
+    // 실제 구현시 라우터 사용 예정
+    // navigateToStrategyList('/strategies');
+  }
+  return (
+    <div className='mt-10 -mx-[16px]'>
+      <div className='flex items-center px-5 py-8 bg-primary-100'>
+        <h3 className="font-semibold text-gray-900 text-14">
+          현재 진행 중인 전략(0/3)
+        </h3>
+      </div>
+      <section className='px-5 py-5 bg-white'>
+        <div className='flex items-center justify-center px-16 py-12 mb-8 border border-gray-200 rounded-8'>
+          <div className='flex-shrink-0 w-[64px] h-[67px] mr-4 bg-orange-400 rounded-8'></div>
+          <div className='flex-1 ml-2'>
+            <h4 className='mb-1 font-bold text-left text-gray-900 text-16'>
+              진행 중인 도전이 없어요
+            </h4>
+            <p className='text-gray-500 text-14'>이러다 또 텅장...</p>
+          </div>
+        </div>
+        <button onClick={navigateToStrategyList} className='flex items-center justify-center w-full py-3 bg-primary-500 rounded-8'>
+          <span className='text-white text-12'>도전 추가하기</span>
+          <Plus className="w-12 h-12 text-white" />
+        </button>
+      </section>
+    </div>
+  )
+}
+
+export default homeStrategy

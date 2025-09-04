@@ -7,12 +7,16 @@ import {
 } from "react-router-dom";
 import BottomNav from "./shared/components/common/BottomNav";
 import AppLayout from "./shared/components/layout/AppLayout";
-import Login from "./pages/login";
 import { useEffect } from "react";
+import Home from "./pages/home";
 
 function AppContent() {
   const location = useLocation();
-  const hideBottomNav = location.pathname === "/login";
+  const hideBottomNav =
+    location.pathname === "/goalSetup" ||
+    location.pathname === "/survey" ||
+    location.pathname.startsWith("/survey/") ||
+    location.pathname === "/login";
 
   const [searchParams] = useSearchParams();
 
@@ -30,9 +34,10 @@ function AppContent() {
   return (
     <AppLayout>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<div>홈</div>} />
-        {/* 다른 페이지들도 여기 추가 */}
+        <Route path="/" element={<Home />} />
+        <Route path="/goalSetup" element={<GoalSetting />} />
+        <Route path="/survey" element={<Survey />} />
+        <Route path="/survey/result" element={<SurveyResult />} />
       </Routes>
 
       {!hideBottomNav && <BottomNav />}
@@ -42,9 +47,13 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <div className="flex justify-center min-h-screen bg-gray-100">
+      <div className="container relative bg-white min-w-mobile-min pb-[100px]">
+        <Router>
+          <AppContent />
+        </Router>
+      </div>
+    </div>
   );
 }
 
