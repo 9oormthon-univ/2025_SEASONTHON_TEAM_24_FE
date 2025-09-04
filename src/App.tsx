@@ -3,6 +3,7 @@ import BottomNav from './shared/components/common/BottomNav';
 import Home from './pages/home';
 import GoalSetting from './pages/goal';
 import Survey from "./pages/survey/SurveyPage"
+import SurveyResult from './pages/survey/SurveyResult'
 
 function AppContent() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/goalSetup" element={<GoalSetting />} />
         <Route path="/survey" element={<Survey />} />
+        <Route path="/survey/result" element={<SurveyResult />} />
       </Routes>
       {!hideBottomNav && <BottomNav />}
     </div>
