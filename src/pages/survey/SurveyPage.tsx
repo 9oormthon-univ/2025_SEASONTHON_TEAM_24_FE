@@ -59,7 +59,7 @@ function SurveyPage(){
   }, []);
 
   /**
-   * Survey Get fnc
+   * @param Survey Get fnc
    */
 
   /* async function getQuestions() {
@@ -129,6 +129,38 @@ function SurveyPage(){
   function getQuestionImg(surveyId: number): string {
     return questionImages[surveyId] || defaultImg;
   }
+
+  /**
+   * 
+   * @param 서베이 답변 제출 
+   */
+
+  /* async function submitAnswer(finalAnswers: SurveyAnswer[]) {
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/surveys/responses`, {
+        type: "FULL",
+        answers: finalAnswers
+      });
+      if(res.data.statusCode === 200) {
+        console.log('서베이 제출 성공', res.data);
+
+        // 결과 페이지로 이동
+        navigate('/survey/result', { 
+          state: { 
+            completed: res.data.data.completed,
+            savedCount: res.data.data.savedCount,
+            answers: finalAnswers
+          } 
+        });
+      } else {
+        throw new Error("서베이 제출 실패");
+      } 
+    } catch(err) {
+      console.error("서베이 제출 에러", err);
+      alert("서베이 제출 실패");
+    }
+  } */
+
     // 서베이 완료 처리
   function handleSurveyComplete(finalAnswers: SurveyAnswer[]) {
     console.log('서베이 완료!');
