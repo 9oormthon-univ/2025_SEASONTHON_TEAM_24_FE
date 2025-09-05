@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAuthStore } from '../../stores/authStore';
 // import axios from 'axios';
 
 /**
@@ -58,6 +59,7 @@ const MOCK_CHARACTER_DATA: ResultState = {
 };
 
 function SurveyResult() {
+  const { completeOnboarding } = useAuthStore();
   const location = useLocation();
   const navigate = useNavigate();
   const [character, setCharacter] = useState<Character | null>(null);
@@ -104,6 +106,7 @@ function SurveyResult() {
   }
 
   function handleGoHome() {
+    completeOnboarding(); // 온보딩 완료 처리
     navigate("/");
   }
   const characterImage = getCharacterImage(character.code);
