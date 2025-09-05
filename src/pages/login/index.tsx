@@ -6,11 +6,11 @@ function Login() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-row items-center mb-10">
-        <img src={LoginCharacter} alt="LoginCharacter" className="w-40 mb-4" />
-        <img src={LoginLogo} alt="LoginLogo" className="w-32" />
+        <img src={LoginCharacter} alt="LoginCharacter" className="w-[156px] mb-4" />
+        <img src={LoginLogo} alt="LoginLogo" className="w-[133px] mr-7" />
       </div>
 
-      <span className="text-12 text-gray-300">SNS 계정으로 간편 가입하기</span>
+      <span className="mb-1 text-gray-300 text-12">SNS 계정으로 간편 가입하기</span>
       <img
         onClick={() =>
           (window.location.href =
@@ -18,7 +18,7 @@ function Login() {
         }
         src={KakaoBtn}
         alt="KakaoBtn"
-        className="w-64 cursor-pointer"
+        className="w-[272px] cursor-pointer"
       />
     </div>
   );
