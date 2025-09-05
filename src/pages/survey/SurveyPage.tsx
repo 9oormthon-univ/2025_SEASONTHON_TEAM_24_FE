@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 import {MOCK_SURVEY_QUESTIONS } from '../../data/mockSurveyData';
 
 import survey1 from '../../shared/assets/survey-svg/survey1.svg';
@@ -57,7 +58,28 @@ function SurveyPage(){
     loadQuestions();
   }, []);
 
-    // 목업 데이터 로드
+  /**
+   * Survey Get fnc
+   */
+
+  /* async function getQuestions() {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/surveys/full`);
+      if(res.data.statuscode === 200){
+        const surveyData = res.data.data;
+        setQuestions(res.data.data.questions);
+      } else {
+        throw new Error('서베이 로드 실패')
+      } 
+    } catch(err) {
+      console.error('error', err);
+    } finally {
+      setLoading(false);
+    }
+  } */
+
+  // 목업 데이터 로드
   function loadQuestions() {
     setLoading(true);
     
