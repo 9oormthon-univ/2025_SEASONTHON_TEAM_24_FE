@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Routes, Route, useLocation, useSearchParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import BottomNav from './shared/components/common/BottomNav';
-import Home from './pages/home';
-import Survey from "./pages/survey/SurveyPage"
-import SurveyResult from './pages/survey/SurveyResult'
-import StrategyListPage from './pages/strategy/StrategyListPage'
+import BottomNav from "./shared/components/common/BottomNav";
+import Home from "./pages/home";
+import Survey from "./pages/survey/SurveyPage";
+import SurveyResult from "./pages/survey/SurveyResult";
+import StrategyListPage from "./pages/strategy/StrategyListPage";
 import AppLayout from "./shared/components/layout/AppLayout";
-import Login from "./pages/login/index"
-import Onboarding from "./pages/onboarding/OnboardingPage"
-import GoalSetting from "./pages/goal/goalSetting"
+import Login from "./pages/login/index";
+import Onboarding from "./pages/onboarding/OnboardingPage";
+import GoalSetting from "./pages/goal/goalSetting";
 import GoalResult from "./pages/goal/goalResult";
-import { useAuthStore } from './stores/authStore';
+import { useAuthStore } from "./stores/authStore";
 
 function AppContent() {
   const location = useLocation();
@@ -19,9 +19,9 @@ function AppContent() {
     location.pathname === "/survey" ||
     location.pathname.startsWith("/survey/") ||
     location.pathname === "/login" ||
-    location.pathname === "/onboarding" || 
-    location.pathname === "/goal-setting" || 
-    location.pathname === "/goal-result" 
+    location.pathname === "/onboarding" ||
+    location.pathname === "/goal-setting" ||
+    location.pathname === "/goal-result";
 
   const [searchParams] = useSearchParams();
   const { login } = useAuthStore();
@@ -47,9 +47,8 @@ function AppContent() {
         <Route path="/survey" element={<Survey />} />
         <Route path="/survey/result" element={<SurveyResult />} />
         <Route path="/strategyList" element={<StrategyListPage />} />
-        <Route path="/login" element={<Login />} /> 
-        <Route path="/onboarding" element={<Onboarding />} /> 
-
+        <Route path="/login" element={<Login />} />
+        <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
 
       {!hideBottomNav && <BottomNav />}
@@ -58,6 +57,12 @@ function AppContent() {
 }
 
 function App() {
+  const { checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    // 앱 시작시 기존 토큰 확인
+    checkAuth();
+  }, [checkAuth]);
   return (
     <div className="flex justify-center min-h-screen bg-gray-100">
       <div className="container relative bg-white min-w-mobile-min pb-[100px]">
@@ -68,6 +73,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
