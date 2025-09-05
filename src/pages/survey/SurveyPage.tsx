@@ -66,7 +66,7 @@ function SurveyPage(){
     setLoading(true);
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/surveys/full`);
-      if(res.data.statuscode === 200){
+      if(res.data.statusCode === 200){
         const surveyData = res.data.data;
         setQuestions(res.data.data.questions);
       } else {
@@ -149,6 +149,12 @@ function SurveyPage(){
           state: { 
             completed: res.data.data.completed,
             savedCount: res.data.data.savedCount,
+            character: {
+              code: responseData.code,
+              name: responseData.name,
+              desc: responseData.desc,
+              trait: responseData.trait
+            },
             answers: finalAnswers
           } 
         });
