@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, useSearchParams } from 'react-router-dom';
 import BottomNav from './shared/components/common/BottomNav';
 import Home from './pages/home';
-import GoalSetting from './pages/goal';
 import Survey from "./pages/survey/SurveyPage"
 import SurveyResult from './pages/survey/SurveyResult'
 import StrategyListPage from './pages/strategy/StrategyListPage'
 import AppLayout from "./shared/components/layout/AppLayout";
 import Login from "./pages/login/index"
 import Onboarding from "./pages/onboarding/OnboardingPage"
+import GoalSetting from "./pages/goal/goalSetting"
+import GoalResult from "./pages/goal/goalResult";
 import { useEffect } from "react";
 
 function AppContent() {
@@ -17,7 +18,9 @@ function AppContent() {
     location.pathname === "/survey" ||
     location.pathname.startsWith("/survey/") ||
     location.pathname === "/login" ||
-    location.pathname === "/onboarding"
+    location.pathname === "/onboarding" || 
+    location.pathname === "/goal-setting" || 
+    location.pathname === "/goal-result" 
 
   const [searchParams] = useSearchParams();
 
@@ -36,7 +39,8 @@ function AppContent() {
     <AppLayout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/goalSetup" element={<GoalSetting />} />
+        <Route path="/goal-setting" element={<GoalSetting />} />
+        <Route path="/goal-result" element={<GoalResult />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/survey/result" element={<SurveyResult />} />
         <Route path="/strategyList" element={<StrategyListPage />} />

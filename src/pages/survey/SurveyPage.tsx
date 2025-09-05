@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 import {MOCK_SURVEY_QUESTIONS } from '../../data/mockSurveyData';
 
 import survey1 from '../../shared/assets/survey-svg/survey1.svg';
@@ -57,7 +58,28 @@ function SurveyPage(){
     loadQuestions();
   }, []);
 
-    // 목업 데이터 로드
+  /**
+   * @param Survey Get fnc
+   */
+
+  /* async function getQuestions() {
+    setLoading(true);
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/surveys/full`);
+      if(res.data.statusCode === 200){
+        const surveyData = res.data.data;
+        setQuestions(res.data.data.questions);
+      } else {
+        throw new Error('서베이 로드 실패')
+      } 
+    } catch(err) {
+      console.error('error', err);
+    } finally {
+      setLoading(false);
+    }
+  } */
+
+  // 목업 데이터 로드
   function loadQuestions() {
     setLoading(true);
     
@@ -107,6 +129,44 @@ function SurveyPage(){
   function getQuestionImg(surveyId: number): string {
     return questionImages[surveyId] || defaultImg;
   }
+
+  /**
+   * 
+   * @param 서베이 답변 제출 
+   */
+
+  /* async function submitAnswer(finalAnswers: SurveyAnswer[]) {
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/surveys/responses`, {
+        type: "FULL",
+        answers: finalAnswers
+      });
+      if(res.data.statusCode === 200) {
+        console.log('서베이 제출 성공', res.data);
+
+        // 결과 페이지로 이동
+        navigate('/survey/result', { 
+          state: { 
+            completed: res.data.data.completed,
+            savedCount: res.data.data.savedCount,
+            character: {
+              code: responseData.code,
+              name: responseData.name,
+              desc: responseData.desc,
+              trait: responseData.trait
+            },
+            answers: finalAnswers
+          } 
+        });
+      } else {
+        throw new Error("서베이 제출 실패");
+      } 
+    } catch(err) {
+      console.error("서베이 제출 에러", err);
+      alert("서베이 제출 실패");
+    }
+  } */
+
     // 서베이 완료 처리
   function handleSurveyComplete(finalAnswers: SurveyAnswer[]) {
     console.log('서베이 완료!');
