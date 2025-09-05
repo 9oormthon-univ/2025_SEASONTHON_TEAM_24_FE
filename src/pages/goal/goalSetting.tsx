@@ -1,13 +1,46 @@
 import {useState} from "react";
 import { useNavigate } from 'react-router';
+import axios from "axios";
 import InputField from '../../shared/components/goal/InputField';
 import MainCharacter from "../../shared/assets/svg/mainCharacter1.svg"
 
 function GoalSetting(){
   const [monthlyIncome, setMonthlyIncome ] = useState("");
   const [savingGoal, setSavingGoal] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  async function submitGoal() {
+    setIsLoading(true);
+
+    try {
+      const res = await axios.post('/api/users/required-days', {
+        monthlyPay: Number(monthlyIncome),
+        monthlyCost: 0,
+        targetPrice: Number(savingGoal)
+      })
+      if(res.data.statusCode === 200) {
+        const calculatedDays = res.data.data.days;
+        console.log("계산 일수 : ", calculatedDays);
+
+        navigate('/goal-result', {
+          state: {
+            monthlyIncome: Number(monthlyIncome),
+            savingGoal: Number(savingGoal),
+            calculatedDays: calculatedDays
+          }
+        });
+      } else {
+        throw new Error(res.data.message || "FAIL");
+      }
+    } catch(err){
+      console.error('API 호출 에러', err);
+      alert('오류가 발생해습니다.')
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const handleNext = () => {
     console.log("월 수입 : ", monthlyIncome);
@@ -48,7 +81,9 @@ function GoalSetting(){
         <button 
           onClick={handleNext}
           className="w-full py-3 font-medium text-white transition-colors bg-primary-500 mt-[74px] text-12 rounded-8"
-        >다음</button>
+        >
+          {isLoading ? '계산 중...' : '다음'}
+        </button>
       </div>
     </div>
   )
