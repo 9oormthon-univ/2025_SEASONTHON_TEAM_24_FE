@@ -18,7 +18,9 @@ function AppContent() {
     location.pathname === "/survey" ||
     location.pathname.startsWith("/survey/") ||
     location.pathname === "/login" ||
-    location.pathname === "/onboarding"
+    location.pathname === "/onboarding" || 
+    location.pathname === "/goal-setting" || 
+    location.pathname === "/goal-result" 
 
   const [searchParams] = useSearchParams();
 

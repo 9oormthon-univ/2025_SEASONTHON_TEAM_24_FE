@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { useNavigate } from 'react-router';
 import InputField from '../../shared/components/goal/InputField';
 import MainCharacter from "../../shared/assets/svg/mainCharacter1.svg"
 
@@ -6,9 +7,17 @@ function GoalSetting(){
   const [monthlyIncome, setMonthlyIncome ] = useState("");
   const [savingGoal, setSavingGoal] = useState("");
 
+  const navigate = useNavigate();
+
   const handleNext = () => {
     console.log("월 수입 : ", monthlyIncome);
     console.log("목표 저금 금액 : ", savingGoal);
+
+    if(!monthlyIncome || !savingGoal) {
+      alert("모든 필드를 입력해주세요!");
+      return;
+    }
+    navigate('/goal-result')
   }
   
   return (
