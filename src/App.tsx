@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect } from "react";
 import BottomNav from './shared/components/common/BottomNav';
 import Home from './pages/home';
 import Survey from "./pages/survey/SurveyPage"
@@ -9,7 +10,7 @@ import Login from "./pages/login/index"
 import Onboarding from "./pages/onboarding/OnboardingPage"
 import GoalSetting from "./pages/goal/goalSetting"
 import GoalResult from "./pages/goal/goalResult";
-import { useEffect } from "react";
+import { useAuthStore } from './stores/authStore';
 
 function AppContent() {
   const location = useLocation();
@@ -23,17 +24,19 @@ function AppContent() {
     location.pathname === "/goal-result" 
 
   const [searchParams] = useSearchParams();
+  const { login } = useAuthStore();
 
   useEffect(() => {
     const status = searchParams.get("status");
     const refreshToken = searchParams.get("refreshToken");
 
     if (status === "login" && refreshToken) {
+      login(refreshToken); // authStore에 저장
       localStorage.setItem("refreshToken", refreshToken);
 
       window.history.replaceState({}, document.title, "/");
     }
-  }, [searchParams]);
+  }, [searchParams, login]);
 
   return (
     <AppLayout>
