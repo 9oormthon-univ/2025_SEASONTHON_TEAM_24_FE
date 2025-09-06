@@ -27,7 +27,7 @@ function homeStrategy() {
           className="flex items-center justify-center w-full py-3 bg-primary-500 rounded-8"
         >
           <span className="text-white text-12">도전 추가하기</span>
-          <Plus className="w-12 h-12 text-white" />
+          <Plus className="text-white w-[15px] h-[15px]" />
         </button>
       </section>
     </div>
