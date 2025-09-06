@@ -1,12 +1,14 @@
 import { Plus } from "lucide-react";
+import { useNavigate } from 'react-router';
 import homeEmpty from "../../assets/home-assets/home-empty.svg";
 
 // 전략 컴포넌트
-function homeStrategy() {
+function HomeStrategy() {
+  const navigate = useNavigate();
   function navigateToStrategyList() {
     console.log("전략 리스트 페이지로 이동");
     // 실제 구현시 라우터 사용 예정
-    // navigateToStrategyList('/strategies');
+    navigate('/strategyList')
   }
   return (
     <div className="mt-10 -mx-[16px]">
@@ -34,4 +36,4 @@ function homeStrategy() {
   );
 }
 
-export default homeStrategy;
+export default HomeStrategy;
