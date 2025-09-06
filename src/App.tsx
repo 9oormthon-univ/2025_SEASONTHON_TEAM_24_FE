@@ -10,6 +10,7 @@ import Login from "./pages/login/index";
 import Onboarding from "./pages/onboarding/OnboardingPage";
 import GoalSetting from "./pages/goal/goalSetting";
 import GoalResult from "./pages/goal/goalResult";
+import Mypage from "./pages/mypage/index"
 import { useAuthStore } from "./stores/authStore";
 
 function AppContent() {
@@ -49,6 +50,7 @@ function AppContent() {
         <Route path="/strategyList" element={<StrategyListPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/mypage" element={<Mypage />} />
       </Routes>
 
       {!hideBottomNav && <BottomNav />}
