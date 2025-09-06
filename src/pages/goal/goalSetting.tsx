@@ -15,7 +15,8 @@ function GoalSetting(){
     setIsLoading(true);
 
     try {
-      const res = await axios.post('/api/users/required-days', {
+      const baseURL = import.meta.env.VITE_API_BASE_URL
+      const res = await axios.post(`${baseURL}/api/users/required-days`, {
         monthlyPay: Number(monthlyIncome),
         monthlyCost: 0,
         targetPrice: Number(savingGoal)
