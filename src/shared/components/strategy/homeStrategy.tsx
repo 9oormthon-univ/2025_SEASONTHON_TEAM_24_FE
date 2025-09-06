@@ -39,15 +39,16 @@
 // export default HomeStrategy;
 import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 import homeEmpty from "../../assets/home-assets/home-empty.svg";
 import StrategyCard from "../../components/strategy/strategyCard";
-import { CAF_STRATEGY_DATA, type Strategy } from '../../../data/strategy';
+import Modal from "../../components/strategy/Modal";
+import { CAF_STRATEGY_DATA, type Strategy } from "../../../data/strategy";
 
 // 진행중인 전략 타입
 interface ActiveStrategy extends Strategy {
   isCompleted: boolean;
-  strategyType: 'daily' | 'weekly';
+  strategyType: "daily" | "weekly";
 }
 
 function HomeStrategy() {
@@ -61,17 +62,17 @@ function HomeStrategy() {
     // 임시 데이터 - 실제로는 사용자의 활성 전략을 API에서 가져와야 함
     const mockActiveStrategies: ActiveStrategy[] = [
       {
-        ...CAF_STRATEGY_DATA[0], 
+        ...CAF_STRATEGY_DATA[0],
         isCompleted: false,
-        strategyType: 'daily'
+        strategyType: "daily",
       },
       {
-        ...CAF_STRATEGY_DATA[1], 
+        ...CAF_STRATEGY_DATA[1],
         isCompleted: true,
-        strategyType: 'daily'
-      }
+        strategyType: "daily",
+      },
     ];
-    
+
     // 예시: 전략이 있는 경우와 없는 경우를 테스트하려면 빈 배열로 변경
     setActiveStrategies(mockActiveStrategies);
     // setActiveStrategies([]); // 빈 상태 테스트용
@@ -79,7 +80,7 @@ function HomeStrategy() {
 
   function navigateToStrategyList() {
     console.log("전략 리스트 페이지로 이동");
-    navigate('/strategyList');
+    navigate("/strategyList");
   }
 
   function handleStrategyCardClick(strategy: ActiveStrategy) {
@@ -95,32 +96,31 @@ function HomeStrategy() {
 
   function handleModalConfirm() {
     if (!selectedStrategy) return;
-    
+
     console.log(`${selectedStrategy.title} 주간 전략으로 승급`);
-    
+
     // 전략을 주간으로 변경
-    setActiveStrategies(prev => 
-      prev.map(strategy => 
-        strategy.strategy_id === selectedStrategy.strategy_id 
-          ? { ...strategy, strategyType: 'weekly', isCompleted: true }
+    setActiveStrategies((prev) =>
+      prev.map((strategy) =>
+        strategy.strategy_id === selectedStrategy.strategy_id
+          ? { ...strategy, strategyType: "weekly", isCompleted: true }
           : strategy
       )
     );
-    
+    closeModal();
+  }
+  function closeModal() {
     setShowModal(false);
     setSelectedStrategy(null);
   }
-
   function handleModalCancel() {
     if (!selectedStrategy) return;
-    
+
     console.log(`${selectedStrategy.title} 전략 삭제`);
-    
+
     // 전략 삭제
-    setActiveStrategies(prev => 
-      prev.filter(strategy => strategy.strategy_id !== selectedStrategy.strategy_id)
-    );
-    
+    setActiveStrategies((prev) => prev.filter((strategy) => strategy.strategy_id !== selectedStrategy.strategy_id));
+
     setShowModal(false);
     setSelectedStrategy(null);
   }
@@ -128,20 +128,14 @@ function HomeStrategy() {
   return (
     <div className="mt-10 -mx-[16px]">
       <div className="flex items-center px-5 py-8 bg-primary-100">
-        <h3 className="font-semibold text-gray-900 text-14">
-          현재 진행 중인 전략({activeStrategies.length}/3)
-        </h3>
+        <h3 className="font-semibold text-gray-900 text-14">현재 진행 중인 전략({activeStrategies.length}/3)</h3>
       </div>
-      
+
       <section className="px-5 py-5 bg-white">
         {/* 진행중인 전략이 없는 경우 */}
         {activeStrategies.length === 0 ? (
           <>
-            <img 
-              src={homeEmpty} 
-              alt="진행 중인 도전이 없어요" 
-              className="w-full h-auto mb-8" 
-            />
+            <img src={homeEmpty} alt="진행 중인 도전이 없어요" className="w-full h-auto mb-8" />
             <button
               onClick={navigateToStrategyList}
               className="flex items-center justify-center w-full py-3 bg-primary-500 rounded-8"
@@ -160,13 +154,13 @@ function HomeStrategy() {
                   strategy={strategy}
                   onClick={() => handleStrategyCardClick(strategy)}
                   isActive={true}
-                  showCheckButton={strategy.strategyType === 'daily'}
+                  showCheckButton={strategy.strategyType === "daily"}
                   onCheckClick={() => handleCheckClick(strategy)}
                   isCompleted={strategy.isCompleted}
                 />
               ))}
             </div>
-            
+
             {/* 3개 미만일 때 추가 버튼 */}
             {activeStrategies.length < 3 && (
               <button
@@ -181,31 +175,14 @@ function HomeStrategy() {
         )}
       </section>
 
-      {/* 모달 (임시 - 실제로는 별도 컴포넌트로 분리) */}
-      {showModal && selectedStrategy && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="max-w-sm p-6 mx-4 bg-white rounded-12">
-            <h3 className="mb-2 font-bold text-18">오늘도 완료!</h3>
-            <p className="mb-6 text-gray-600 text-14">
-              "{selectedStrategy.title}"을 이번 주에 계속 도전할까요?
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={handleModalCancel}
-                className="flex-1 py-3 border border-gray-200 rounded-8 text-14"
-              >
-                아니요!
-              </button>
-              <button
-                onClick={handleModalConfirm}
-                className="flex-1 py-3 text-white bg-primary-500 rounded-8 text-14"
-              >
-                네!
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* 모달 컴포넌트 */}
+      <Modal
+        isOpen={showModal}
+        strategy={selectedStrategy}
+        onConfirm={handleModalConfirm}
+        onCancel={handleModalCancel}
+        onClose={closeModal}
+      />
     </div>
   );
 }
