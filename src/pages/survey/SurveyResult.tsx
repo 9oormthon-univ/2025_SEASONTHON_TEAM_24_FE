@@ -1,7 +1,7 @@
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuthStore } from '../../stores/authStore';
-// import axios from 'axios';
 
 /**
  * 캐릭터 SVG 이미지 import
@@ -17,6 +17,7 @@ interface SurveyAnswer {
   surveyId: number;
   optionType: string;
 }
+
 interface Character {
   code: string;
   name: string;
@@ -26,17 +27,9 @@ interface Character {
 
 interface ResultState {
   completed: boolean;
-  answersCount: number;
+  savedCount?: number;
   character: Character;
   answers: SurveyAnswer[];
-}
-
-interface ResultState {
-  character_id: number;
-  code: string;
-  name: string;
-  desc: string;
-  traits: string[]; // 백엔드에서 받을 특징 리스트
 }
 
 // 캐릭터 코드별 이미지 매핑
@@ -49,15 +42,6 @@ const CHARACTER_IMAGES = {
   FAS: fasCharacter,
 };
 
-// 목업 캐릭터 데이터 (백엔드 응답 형태)
-const MOCK_CHARACTER_DATA: ResultState = {
-  character_id: 1,
-  code: "CAF",
-  name: "카페인 중독 꺼비",
-  desc: "커피 살 돈으로 커피 머신을 하나 사겠다!",
-  traits: ["소소한 일상 지출이 많음", "매일 커피와 간식 지출이 쌓여 텅장", '"이 정도는 괜찮지" 하다가 통장 잔액 증발'],
-};
-
 function SurveyResult() {
   const { completeOnboarding } = useAuthStore();
   const location = useLocation();
@@ -67,38 +51,19 @@ function SurveyResult() {
   const state = location.state as ResultState;
 
   // 초기 데이터 검증
-  // 데이터 X -> 서베이로 돌려보냄
-  // 데이터 O -> 결과 조회
   useEffect(() => {
-    if (!state || !state.completed) {
+    if (!state || !state.completed || !state.character) {
       navigate("/survey");
       return;
     }
 
+    // navigate로 전달받은 실제 캐릭터 데이터 사용
     setCharacter(state.character);
   }, [state, navigate]);
-
-  // async function getCharacterRes() {
-  //   try {
-  //   //   const res = await axios.post('/api/survey/result', {
-  //   //     answer: state.answers
-  //   //   });
-  //   //   setCharacter(res.data.data);
-  //   // }
-
-  //   // 임시 목업 데이터 사용
-  //     setCharacter(MOCK_CHARACTER_DATA);
-  //   } catch(err) {
-  //     console.error('캐릭터 결과 조회', err);
-  //     setCharacter(MOCK_CHARACTER_DATA);
-  //   }
-  // }
 
   function getCharacterImage(code: string): string {
     return CHARACTER_IMAGES[code as keyof typeof CHARACTER_IMAGES] || cafCharacter;
   }
-
-  // const characterImage = character ? getCharacterImage(character.code) : cafCharacter;
 
   function parseTraits(traitString: string): string[] {
     // trait 문자열을 배열로 변환 (쉼표로 구분된 문자열 처리)
@@ -109,6 +74,18 @@ function SurveyResult() {
     completeOnboarding(); // 온보딩 완료 처리
     navigate("/");
   }
+
+  // character가 없으면 로딩 상태
+  if (!character) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="text-center">
+          <p className="text-primary-400">결과를 불러오는 중...</p>
+        </div>
+      </div>
+    );
+  }
+
   const characterImage = getCharacterImage(character.code);
   const traits = parseTraits(character.trait);
 
@@ -117,20 +94,20 @@ function SurveyResult() {
       <div className="text-center mt-[38px]">
         {/* 캐릭터 이름(제목) */}
         <h1 className="font-semibold text-gray-900 text-24">
-          {character?.name}
+          {character.name}
         </h1>
       </div>
       {/* 캐릭터 설명(부제목) */}
       <div className="mb-12 text-center">
         <p className="font-semibold text-14 text-navy-100">
-          {character?.desc}
+          {character.desc}
         </p>
       </div>
       <div className="flex justify-center mb-12">
         <div className="w-[200] h-[200] flex items-center justify-center">
           <img 
             src={characterImage} 
-            alt={character?.name} 
+            alt={character.name} 
             className="w-[200px] h-[200px]" 
           />
         </div>
@@ -140,7 +117,7 @@ function SurveyResult() {
       <div className="relative px-[16px] py-3 mb-8 border-2 border-primary-300 rounded-8 shadow-primary">
         <p className="text-left text-gray-500 text-14">
           <span className="font-semibold text-gray-900 text-14">
-            '{character?.name.trim()}'
+            '{character.name.trim()}'
           </span>와 함께하면 한 번의
           소비 전략으로 최대
           <span className="font-semibold text-primary-500 text-14">
